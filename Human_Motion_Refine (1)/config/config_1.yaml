@@ -1,0 +1,33 @@
+npad: 5
+res: 10
+ntrain: 5000
+modes: 150
+val_data_percent: 0.20
+
+train_data_path: data/train_data_smplx.pkl
+test_data_path: data/test_data_smplx.pkl
+
+d_co_domain: 150
+lr: 1.0e-4 
+epochs: 5000
+λ_grad: 1.0
+n_critic: 10
+batch_size: 4
+
+alpha: 3 
+tau: 23 
+codim: 120 
+device: 'cuda:0' 
+
+logging:
+    G_save_path: /scratch/gilbreth/anugu/weights_1/
+    D_save_path: /scratch/gilbreth/anugu/weights_1/
+    vis_test_results_path: /scratch/gilbreth/anugu/test_results_1/
+    vis_train_results_path: /scratch/gilbreth/anugu/train_results_1/
+    log_loss_path: /scratch/gilbreth/anugu/loss_log_1.txt
+
+
+pose_info: 187
+n_feat: 2
+
+

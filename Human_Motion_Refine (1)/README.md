@@ -1,0 +1,1 @@
+Get train_data.pkl and test_data.pkl from <a href="https://iitgnacin-my.sharepoint.com/:f:/g/personal/21110029_iitgn_ac_in/ElCEgycQNY1BrQh5EfmGAnYBebDpkezbzSUd5zmdFO-RYA?e=FsYuL6">link</a> and put them in ./data.

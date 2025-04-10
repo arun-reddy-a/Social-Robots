@@ -1,0 +1,25 @@
+Human_Motion_Refine\ \(1\)/data/
+Human_Motion_Refine\ \(1\)/smplx/
+
+Code/FNO/burgers_data_R10.mat
+
+Code/Duolando-main/assets/
+Code/Duolando-main/data/
+Code/Duolando-main/data_more_processing/
+Code/Duolando-main/new_data/
+Code/Duolando-main/smplx/
+
+Code/Duolando-main/train_betas.pkl
+Code/Duolando-main/train_data_smplx_100.pkl
+Code/Duolando-main/train_data_smplx_150.pkl
+Code/Duolando-main/train_data_smplx.pkl
+Code/Duolando-main/train_data.pkl
+Code/Duolando-main/train_mean.npy
+Code/Duolando-main/train_orient.pkl
+Code/Duolando-main/train_std.npy
+Code/Duolando-main/train_betas.pkl
+Code/Duolando-main/test_data_smplx_100.pkl
+Code/Duolando-main/test_data_smplx_150.pkl
+Code/Duolando-main/test_data_smplx.pkl
+Code/Duolando-main/test_data.pkl
+Code/Duolando-main/test_orient.pkl

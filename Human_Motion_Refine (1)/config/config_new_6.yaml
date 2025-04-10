@@ -1,0 +1,97 @@
+npad: 5
+res: 10
+ntrain: 5000
+modes: 50
+val_data_percent: 1
+res: 100
+domain_padding: 0.50
+
+train_data: data/data_more_processing/axis_magnitude_train_data_100.pkl
+test_data: data/data_more_processing/axis_magnitude_test_data_100.pkl
+experiment_name: '100_50_updated_v2_max_epoch_scheduler_decreased'
+
+d_co_domain: 150
+lr: 1.0e-4 
+epochs: 500000
+λ_grad: 10.0
+hm_weight: 0.15
+fc_weight: 0.15
+gt_weight: 10.0
+n_critic: 1
+batch_size: 1
+
+
+alpha: 3 
+tau: 23 
+codim: 120 
+device: 'cuda:0' 
+
+logging:
+    G_move_save_path: /scratch/gilbreth/anugu/weights_20/Models/Gen/move/
+    G_orient_save_path: /scratch/gilbreth/anugu/weights_20/Models/Gen/orient/
+    G_betas_save_path: /scratch/gilbreth/anugu/weights_20/Models/Gen/betas/
+    G_hands_save_path: /scratch/gilbreth/anugu/weights_20/Models/Gen/hands/
+    G_legs_save_path: /scratch/gilbreth/anugu/weights_20/Models/Gen/legs/
+    G_torso_save_path: /scratch/gilbreth/anugu/weights_20/Models/Gen/torso/
+    
+
+    G_move_optimizer_save_path: /scratch/gilbreth/anugu/weights_20/Optims/Gen/move/
+    G_orient_optimizer_save_path: /scratch/gilbreth/anugu/weights_20/Optims/Gen/orient/
+    G_betas_optimizer_save_path: /scratch/gilbreth/anugu/weights_20/Optims/Gen/betas/
+    G_hands_optimizer_save_path: /scratch/gilbreth/anugu/weights_20/Optims/Gen/hands/
+    G_legs_optimizer_save_path: /scratch/gilbreth/anugu/weights_20/Optims/Gen/legs/
+    G_torso_optimizer_save_path: /scratch/gilbreth/anugu/weights_20/Optims/Gen/torso/
+
+    G_move_scheduler_save_path: /scratch/gilbreth/anugu/weights_20/Schedulers/Gen/move/
+    G_orient_scheduler_save_path: /scratch/gilbreth/anugu/weights_20/Schedulers/Gen/orient/
+    G_betas_scheduler_save_path: /scratch/gilbreth/anugu/weights_20/Schedulers/Gen/betas/
+    G_hands_scheduler_save_path: /scratch/gilbreth/anugu/weights_20/Schedulers/Gen/hands/
+    G_legs_scheduler_save_path: /scratch/gilbreth/anugu/weights_20/Schedulers/Gen/legs/
+    G_torso_scheduler_save_path: /scratch/gilbreth/anugu/weights_20/Schedulers/Gen/torso/
+
+
+    D_move_save_path: /scratch/gilbreth/anugu/weights_20/Models/Dis/move/
+    D_orient_save_path: /scratch/gilbreth/anugu/weights_20/Models/Dis/orient/
+    D_betas_save_path: /scratch/gilbreth/anugu/weights_20/Models/Dis/betas/
+    D_hands_save_path: /scratch/gilbreth/anugu/weights_20/Models/Dis/hands/
+    D_legs_save_path: /scratch/gilbreth/anugu/weights_20/Models/Dis/legs/
+    D_torso_save_path: /scratch/gilbreth/anugu/weights_20/Models/Dis/torso/
+
+    D_move_optimizer_save_path: /scratch/gilbreth/anugu/weights_20/Optims/Dis/move/
+    D_orient_optimizer_save_path: /scratch/gilbreth/anugu/weights_20/Optims/Dis/orient/
+    D_betas_optimizer_save_path: /scratch/gilbreth/anugu/weights_20/Optims/Dis/betas/
+    D_hands_optimizer_save_path: /scratch/gilbreth/anugu/weights_20/Optims/Dis/hands/
+    D_legs_optimizer_save_path: /scratch/gilbreth/anugu/weights_20/Optims/Dis/legs/
+    D_torso_optimizer_save_path: /scratch/gilbreth/anugu/weights_20/Optims/Dis/torso/
+
+    D_move_scheduler_save_path: /scratch/gilbreth/anugu/weights_20/Schedulers/Dis/move/
+    D_orient_scheduler_save_path: /scratch/gilbreth/anugu/weights_20/Schedulers/Dis/orient/
+    D_betas_scheduler_save_path: /scratch/gilbreth/anugu/weights_20/Schedulers/Dis/betas/
+    D_hands_scheduler_save_path: /scratch/gilbreth/anugu/weights_20/Schedulers/Dis/hands/
+    D_legs_scheduler_save_path: /scratch/gilbreth/anugu/weights_20/Schedulers/Dis/legs/
+    D_torso_scheduler_save_path: /scratch/gilbreth/anugu/weights_20/Schedulers/Dis/torso/
+
+    
+
+    plots: /scratch/gilbreth/anugu/plots_20/
+
+    vis_test_results_path: /scratch/gilbreth/anugu/test_results_20/
+    vis_train_results_path: /scratch/gilbreth/anugu/train_results_20/
+    log_loss_path: /scratch/gilbreth/anugu/loss_log_20.txt
+
+    final_result_path: /scratch/gilbreth/anugu/final_results_20/
+
+
+resume: False
+resume_epoch: 0
+
+move_dim_info: 3
+orient_dim_info: 3
+betas_dim_info: 16
+hands_dim_info: 152
+legs_dim_info: 32
+torso_dim_info: 36
+
+n_feat: 5
+
+

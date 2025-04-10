@@ -1,0 +1,47 @@
+npad: 5
+res: 10
+ntrain: 5000
+modes: 60
+val_data_percent: 1
+
+train_data: data/data_more_processing/axis_magnitude_train_data.pkl
+test_data: data/data_more_processing/axis_magnitude_test_data.pkl
+
+d_co_domain: 150
+lr: 1.0e-4 
+epochs: 10000
+λ_grad: 10.0
+hm_weight: 0.15
+fc_weight: 0.25
+gt_weight: 1.0
+n_critic: 2
+batch_size: 1
+
+alpha: 3 
+tau: 23 
+codim: 120 
+device: 'cuda:0' 
+
+logging:
+    G_trans_save_path: /scratch/gilbreth/anugu/weights_5/Models/Gen/transl/
+    D_trans_save_path: /scratch/gilbreth/anugu/weights_5/Models/Disc/transl/
+    G_pose_save_path: /scratch/gilbreth/anugu/weights_5/Models/Gen/pose/
+    D_pose_save_path: /scratch/gilbreth/anugu/weights_5/Models/Disc/pose/
+
+    D_transl_optimizer_save_path: /scratch/gilbreth/anugu/weights_5/Optims/Disc/transl/
+    G_transl_optimizer_save_path: /scratch/gilbreth/anugu/weights_5/Optims/Gen/transl/
+    G_pose_optimizer_save_path: /scratch/gilbreth/anugu/weights_5/Optims/Gen/pose/
+    D_pose_optimizer_save_path: /scratch/gilbreth/anugu/weights_5/Optims/Disc/pose/
+
+    plots: /scratch/gilbreth/anugu/plots_5/
+
+    vis_test_results_path: /scratch/gilbreth/anugu/test_results_5/
+    vis_train_results_path: /scratch/gilbreth/anugu/train_results_5/
+    log_loss_path: /scratch/gilbreth/anugu/loss_log_5.txt
+
+
+transl_dim_info: 19
+pose_dim_info: 223
+n_feat: 5
+
+
