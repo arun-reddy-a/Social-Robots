@@ -11,73 +11,73 @@ experiment_name: 'latest_improv_v2'
 
 d_co_domain: 150
 lr: 1.0e-4 
-epochs: 4500
+epochs: 5000
 λ_grad: 10.0
 hm_weight: 0.15
 fc_weight: 0.15
 gt_weight: 10.0
-n_critic: 5
+n_critic: 1
 batch_size: 32
 
 alpha: 3 
 tau: 23 
-codim: 120 
+codim: 1
 device: 'cuda:0' 
 
 logging:
-    G_move_save_path: /scratch/gilbreth/anugu/weights_100/Models/Gen/move/
-    G_orient_save_path: /scratch/gilbreth/anugu/weights_100/Models/Gen/orient/
-    G_betas_save_path: /scratch/gilbreth/anugu/weights_100/Models/Gen/betas/
-    G_hands_save_path: /scratch/gilbreth/anugu/weights_100/Models/Gen/hands/
-    G_legs_save_path: /scratch/gilbreth/anugu/weights_100/Models/Gen/legs/
-    G_torso_save_path: /scratch/gilbreth/anugu/weights_100/Models/Gen/torso/
+    G_move_save_path: /home/arunreddy/ML/Cloud-Storage/weights_100/Models/Gen/move/
+    G_orient_save_path: /home/arunreddy/ML/Cloud-Storage/weights_100/Models/Gen/orient/
+    G_betas_save_path: /home/arunreddy/ML/Cloud-Storage/weights_100/Models/Gen/betas/
+    G_hands_save_path: /home/arunreddy/ML/Cloud-Storage/weights_100/Models/Gen/hands/
+    G_legs_save_path: /home/arunreddy/ML/Cloud-Storage/weights_100/Models/Gen/legs/
+    G_torso_save_path: /home/arunreddy/ML/Cloud-Storage/weights_100/Models/Gen/torso/
     
 
-    G_move_optimizer_save_path: /scratch/gilbreth/anugu/weights_100/Optims/Gen/move/
-    G_orient_optimizer_save_path: /scratch/gilbreth/anugu/weights_100/Optims/Gen/orient/
-    G_betas_optimizer_save_path: /scratch/gilbreth/anugu/weights_100/Optims/Gen/betas/
-    G_hands_optimizer_save_path: /scratch/gilbreth/anugu/weights_100/Optims/Gen/hands/
-    G_legs_optimizer_save_path: /scratch/gilbreth/anugu/weights_100/Optims/Gen/legs/
-    G_torso_optimizer_save_path: /scratch/gilbreth/anugu/weights_100/Optims/Gen/torso/
+    G_move_optimizer_save_path: /home/arunreddy/ML/Cloud-Storage/weights_100/Optims/Gen/move/
+    G_orient_optimizer_save_path: /home/arunreddy/ML/Cloud-Storage/weights_100/Optims/Gen/orient/
+    G_betas_optimizer_save_path: /home/arunreddy/ML/Cloud-Storage/weights_100/Optims/Gen/betas/
+    G_hands_optimizer_save_path: /home/arunreddy/ML/Cloud-Storage/weights_100/Optims/Gen/hands/
+    G_legs_optimizer_save_path: /home/arunreddy/ML/Cloud-Storage/weights_100/Optims/Gen/legs/
+    G_torso_optimizer_save_path: /home/arunreddy/ML/Cloud-Storage/weights_100/Optims/Gen/torso/
 
-    G_move_scheduler_save_path: /scratch/gilbreth/anugu/weights_100/Schedulers/Gen/move/
-    G_orient_scheduler_save_path: /scratch/gilbreth/anugu/weights_100/Schedulers/Gen/orient/
-    G_betas_scheduler_save_path: /scratch/gilbreth/anugu/weights_100/Schedulers/Gen/betas/
-    G_hands_scheduler_save_path: /scratch/gilbreth/anugu/weights_100/Schedulers/Gen/hands/
-    G_legs_scheduler_save_path: /scratch/gilbreth/anugu/weights_100/Schedulers/Gen/legs/
-    G_torso_scheduler_save_path: /scratch/gilbreth/anugu/weights_100/Schedulers/Gen/torso/
+    G_move_scheduler_save_path: /home/arunreddy/ML/Cloud-Storage/weights_100/Schedulers/Gen/move/
+    G_orient_scheduler_save_path: /home/arunreddy/ML/Cloud-Storage/weights_100/Schedulers/Gen/orient/
+    G_betas_scheduler_save_path: /home/arunreddy/ML/Cloud-Storage/weights_100/Schedulers/Gen/betas/
+    G_hands_scheduler_save_path: /home/arunreddy/ML/Cloud-Storage/weights_100/Schedulers/Gen/hands/
+    G_legs_scheduler_save_path: /home/arunreddy/ML/Cloud-Storage/weights_100/Schedulers/Gen/legs/
+    G_torso_scheduler_save_path: /home/arunreddy/ML/Cloud-Storage/weights_100/Schedulers/Gen/torso/
 
 
-    D_move_save_path: /scratch/gilbreth/anugu/weights_100/Models/Dis/move/
-    D_orient_save_path: /scratch/gilbreth/anugu/weights_100/Models/Dis/orient/
-    D_betas_save_path: /scratch/gilbreth/anugu/weights_100/Models/Dis/betas/
-    D_hands_save_path: /scratch/gilbreth/anugu/weights_100/Models/Dis/hands/
-    D_legs_save_path: /scratch/gilbreth/anugu/weights_100/Models/Dis/legs/
-    D_torso_save_path: /scratch/gilbreth/anugu/weights_100/Models/Dis/torso/
+    D_move_save_path: /home/arunreddy/ML/Cloud-Storage/weights_100/Models/Dis/move/
+    D_orient_save_path: /home/arunreddy/ML/Cloud-Storage/weights_100/Models/Dis/orient/
+    D_betas_save_path: /home/arunreddy/ML/Cloud-Storage/weights_100/Models/Dis/betas/
+    D_hands_save_path: /home/arunreddy/ML/Cloud-Storage/weights_100/Models/Dis/hands/
+    D_legs_save_path: /home/arunreddy/ML/Cloud-Storage/weights_100/Models/Dis/legs/
+    D_torso_save_path: /home/arunreddy/ML/Cloud-Storage/weights_100/Models/Dis/torso/
 
-    D_move_optimizer_save_path: /scratch/gilbreth/anugu/weights_100/Optims/Dis/move/
-    D_orient_optimizer_save_path: /scratch/gilbreth/anugu/weights_100/Optims/Dis/orient/
-    D_betas_optimizer_save_path: /scratch/gilbreth/anugu/weights_100/Optims/Dis/betas/
-    D_hands_optimizer_save_path: /scratch/gilbreth/anugu/weights_100/Optims/Dis/hands/
-    D_legs_optimizer_save_path: /scratch/gilbreth/anugu/weights_100/Optims/Dis/legs/
-    D_torso_optimizer_save_path: /scratch/gilbreth/anugu/weights_100/Optims/Dis/torso/
+    D_move_optimizer_save_path: /home/arunreddy/ML/Cloud-Storage/weights_100/Optims/Dis/move/
+    D_orient_optimizer_save_path: /home/arunreddy/ML/Cloud-Storage/weights_100/Optims/Dis/orient/
+    D_betas_optimizer_save_path: /home/arunreddy/ML/Cloud-Storage/weights_100/Optims/Dis/betas/
+    D_hands_optimizer_save_path: /home/arunreddy/ML/Cloud-Storage/weights_100/Optims/Dis/hands/
+    D_legs_optimizer_save_path: /home/arunreddy/ML/Cloud-Storage/weights_100/Optims/Dis/legs/
+    D_torso_optimizer_save_path: /home/arunreddy/ML/Cloud-Storage/weights_100/Optims/Dis/torso/
 
-    D_move_scheduler_save_path: /scratch/gilbreth/anugu/weights_100/Schedulers/Dis/move/
-    D_orient_scheduler_save_path: /scratch/gilbreth/anugu/weights_100/Schedulers/Dis/orient/
-    D_betas_scheduler_save_path: /scratch/gilbreth/anugu/weights_100/Schedulers/Dis/betas/
-    D_hands_scheduler_save_path: /scratch/gilbreth/anugu/weights_100/Schedulers/Dis/hands/
-    D_legs_scheduler_save_path: /scratch/gilbreth/anugu/weights_100/Schedulers/Dis/legs/
-    D_torso_scheduler_save_path: /scratch/gilbreth/anugu/weights_100/Schedulers/Dis/torso/
+    D_move_scheduler_save_path: /home/arunreddy/ML/Cloud-Storage/weights_100/Schedulers/Dis/move/
+    D_orient_scheduler_save_path: /home/arunreddy/ML/Cloud-Storage/weights_100/Schedulers/Dis/orient/
+    D_betas_scheduler_save_path: /home/arunreddy/ML/Cloud-Storage/weights_100/Schedulers/Dis/betas/
+    D_hands_scheduler_save_path: /home/arunreddy/ML/Cloud-Storage/weights_100/Schedulers/Dis/hands/
+    D_legs_scheduler_save_path: /home/arunreddy/ML/Cloud-Storage/weights_100/Schedulers/Dis/legs/
+    D_torso_scheduler_save_path: /home/arunreddy/ML/Cloud-Storage/weights_100/Schedulers/Dis/torso/
 
     
 
-    plots: /scratch/gilbreth/anugu/plots_100/
+    plots: /home/arunreddy/ML/Cloud-Storage/plots_100/
 
-    vis_test_results_path: /scratch/gilbreth/anugu/test_results_100/
-    vis_train_results_path: /scratch/gilbreth/anugu/train_results_100/
-    log_loss_path: /scratch/gilbreth/anugu/loss_log_100.txt
+    vis_test_results_path: /home/arunreddy/ML/Cloud-Storage/test_results_100/
+    vis_train_results_path: /home/arunreddy/ML/Cloud-Storage/train_results_100/
+    log_loss_path: /home/arunreddy/ML/Cloud-Storage/loss_log_100.txt
 
-    final_result_path: /scratch/gilbreth/anugu/final_results_100/
+    final_result_path: /home/arunreddy/ML/Cloud-Storage/final_results_100/
 
 
 resume: False

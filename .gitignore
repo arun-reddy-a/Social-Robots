@@ -11,3 +11,10 @@ Code/Duolando-main/smplx
 
 Code/Duolando-main/misc-data-files
 
+# Ignore __pycache__ folders
+__pycache__/
+**/__pycache__/
+
+# Ignore all .pyc files
+*.pyc
+*.pyo

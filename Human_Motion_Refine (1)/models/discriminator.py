@@ -102,44 +102,42 @@ class cDiscriminator_HM(nn.Module):
 
 
 class small_cDiscriminator_HM(nn.Module):
-    def __init__(self, in_d_co_domain, d_co_domain, n_feat,modes, domain_padding, kernel_dim=16, pad = 0, factor = 3/4):
+    def __init__(self, in_d_co_domain, d_co_domain, n_feat,modes, domain_padding, kernel_dim=16, pad = 0, factor = 0.5):
         super(small_cDiscriminator_HM, self).__init__()
 
-        self.kernel_dim = kernel_dim
-        self.in_width = in_d_co_domain # input channel
-        self.width = d_co_domain//2 
-        self.factor = factor
-        self.padding = pad
-        self.modes = modes
-        self.n_feat = n_feat
+        self.kernel_dim = kernel_dim # 16
+        self.in_width = in_d_co_domain # 16
+        self.width = d_co_domain # 150
+        self.factor = factor # 0.5
+        self.padding = pad # 5
+        self.modes = modes # 300
+        self.n_feat = n_feat # 5
 
-
-        self.uno = UNO(in_channels=in_d_co_domain,
-                        hidden_channels=d_co_domain//2,
-                        out_channels=self.kernel_dim, 
-                        lifting_channels=d_co_domain//2,
-                        projection_channels=2*self.width, 
-                        n_layers=4,
-                        uno_out_channels=[int((1/2*factor)*factor*self.width), 
-                        int((1/2*factor)*factor*self.width),  
-                        int((1/2*factor)*factor*self.width), 
-                        int(self.width)],
-                        uno_n_modes=[[self.modes], 
-                        [self.modes],
-                        [self.modes], 
-                        [self.modes]],
-                        norm = 'instance_norm',
-                        increment_n_modes = [[50], [50], [50], [50]],
-                        uno_scalings=[[1], [1], [1], [1]], horizontal_skips_map={7:0, 6:1, 5:2},
-                        domain_padding=domain_padding)
+        print(in_d_co_domain, self.kernel_dim, self.width)
+        self.uno = UNO(
+                        in_channels=in_d_co_domain,
+                        out_channels=kernel_dim,
+                        hidden_channels=d_co_domain,
+                        lifting_channels=self.width,
+                        projection_channels=self.width,
+                        n_layers=2,
+                        uno_out_channels=[self.width, self.width],
+                        uno_n_modes=[[modes], [modes]],
+                        norm='instance_norm',
+                        increment_n_modes=[[50], [50]],
+                        uno_scalings=[[1], [1]],
+                        domain_padding=domain_padding,
+                        skip='linear',  # Important to avoid soft-gating error
+                        channel_mlp_skip='linear'
+                    )
         
         # kernel for last functional operation
-
+        print('uno model created')
         self.knet = kernel(1, self.kernel_dim)
 
 
     def forward(self, x,c):
-
+        print('hiii')
         fourier_feats = self.get_fourier_features(x.shape, x.device, self.n_feat)
 
         x = torch.cat((x, fourier_feats, c), dim=-1) # (N, 300, 165+165+1)

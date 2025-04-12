@@ -14,7 +14,7 @@ import gc
 train_mean = torch.from_numpy(np.load('data/data_more_processing/train_mean.npy')).to('cuda:0')
 train_std = torch.from_numpy(np.load('data/data_more_processing/train_std.npy')).to('cuda:0')
 
-writer = SummaryWriter("/scratch/gilbreth/anugu/logs_demo/demo_ovfit_models_one_data_latest_improv_v2")
+writer = SummaryWriter("/home/arunreddy/ML/Cloud-Storage/logs_demo/demo_ovfit_models_one_data_latest_improv_v2")
 
 def calculate_gradient_penalty(model, real_images,c, fake_images,cf, device, res):
     """Calculates the gradient penalty loss for WGAN GRF"""
@@ -334,6 +334,7 @@ def train_GANO_HM_two_stage_copy_copy_copy_copy(D_move, D_orient, D_betas, D_han
     losses_V_MSE_full = np.zeros(epochs)
 
     for i in tqdm(range(int(resume_epoch), epochs)):
+        print('epoch', i, ' has started')
         loss_D_move = 0.0
         loss_G_move = 0.0
         loss_W_move = 0.0
@@ -706,7 +707,7 @@ def train_GANO_HM_two_stage_copy_copy_copy_copy(D_move, D_orient, D_betas, D_han
 
         if i%100==0:
             with torch.no_grad():
-                for j, data in enumerate(val_dataloader):
+                '''for j, data in enumerate(val_dataloader):
 
                     x = data[0].to(device).float()
                     c = data[1].to(device).float()
@@ -751,7 +752,7 @@ def train_GANO_HM_two_stage_copy_copy_copy_copy(D_move, D_orient, D_betas, D_han
 
                     print(f'plotting validation for epoch {i}')
                     vis_results(c, x, x_syn, i, logging['vis_test_results_path'], is_smplx=True)
-                    break
+                    break'''
 
                 for j, data in enumerate(train_dataloader):
 
