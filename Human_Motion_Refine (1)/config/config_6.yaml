@@ -7,7 +7,7 @@ domain_padding: 0.20
 
 train_data: data/data_more_processing/axis_magnitude_train_data.pkl
 test_data: data/data_more_processing/axis_magnitude_test_data.pkl
-experiment_name: 'latest_improv_v2'
+periment_name: 'experiment-1'
 
 d_co_domain: 150
 lr: 1.0e-4 

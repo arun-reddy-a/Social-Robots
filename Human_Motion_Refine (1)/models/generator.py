@@ -37,7 +37,9 @@ class cGenerator_HM(nn.Module):
                         norm = 'instance_norm',
                         increment_n_modes = [[50], [50], [50], [50], [50], [50]],
                         uno_scalings=[[1], [1], [1], [1], [1], [1]], horizontal_skips_map={7:0, 6:1, 5:2},
-                        domain_padding=domain_padding)
+                        domain_padding=domain_padding,
+                        skip='linear',  # Important to avoid soft-gating error
+                        channel_mlp_skip='linear')
 
     def forward(self, x,c):
         
@@ -94,7 +96,9 @@ class small_cGenerator_HM(nn.Module):
                         norm = 'instance_norm',
                         increment_n_modes = [[50], [50], [50], [50]],
                         uno_scalings=[[1], [1], [1], [1]], horizontal_skips_map={7:0, 6:1, 5:2},
-                        domain_padding=domain_padding)
+                        domain_padding=domain_padding,
+                        skip='linear',  # Important to avoid soft-gating error
+                        channel_mlp_skip='linear')
 
     def forward(self, x,c):
         
@@ -153,7 +157,9 @@ class mid_cGenerator_HM(nn.Module):
                         norm = 'instance_norm',
                         increment_n_modes = [[50], [50], [50], [50], [50]],
                         uno_scalings=[[1], [1], [1], [1], [1]], horizontal_skips_map={7:0, 6:1, 5:2},
-                        domain_padding=domain_padding)
+                        domain_padding=domain_padding,
+                        skip='linear',  # Important to avoid soft-gating error
+                        channel_mlp_skip='linear')
 
     def forward(self, x,c):
         
@@ -212,7 +218,9 @@ class test_cGenerator_HM(nn.Module):
                         norm = 'instance_norm',
                         increment_n_modes = [[50], [50], [50], [50], [50], [50]],
                         uno_scalings=[[1], [1], [1], [1], [1], [1]], horizontal_skips_map={7:0, 6:1, 5:2},
-                        domain_padding=domain_padding)
+                        domain_padding=domain_padding,
+                        skip='linear',  # Important to avoid soft-gating error
+                        channel_mlp_skip='linear')
 
     def forward(self, x,c):
         

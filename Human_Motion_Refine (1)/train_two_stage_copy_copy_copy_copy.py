@@ -14,7 +14,7 @@ import gc
 train_mean = torch.from_numpy(np.load('data/data_more_processing/train_mean.npy')).to('cuda:0')
 train_std = torch.from_numpy(np.load('data/data_more_processing/train_std.npy')).to('cuda:0')
 
-writer = SummaryWriter("/home/arunreddy/ML/Cloud-Storage/logs_demo/demo_ovfit_models_one_data_latest_improv_v2")
+writer = SummaryWriter("/home/arunreddy/ML/Cloud-Storage/logs_demo/codim-reduce")
 
 def calculate_gradient_penalty(model, real_images,c, fake_images,cf, device, res):
     """Calculates the gradient penalty loss for WGAN GRF"""
@@ -620,7 +620,7 @@ def train_GANO_HM_two_stage_copy_copy_copy_copy(D_move, D_orient, D_betas, D_han
         writer.add_scalar('loss_MSE_full', losses_MSE_full[i], i)
         writer.add_scalar('loss_V_MSE_full', losses_V_MSE_full[i], i)
 
-        if i%10==0:
+        if i%500==0:
             torch.save(G_move.state_dict(), logging['G_move_save_path']+f"generator_move_epoch{i}.pt")
             torch.save(G_orient.state_dict(), logging['G_orient_save_path']+f"generator_orient_epoch{i}.pt")
             torch.save(G_betas.state_dict(), logging['G_betas_save_path']+f"generator_betas_epoch{i}.pt")
