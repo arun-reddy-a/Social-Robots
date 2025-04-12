@@ -1,0 +1,6 @@
+The changes made in this branch when compared to previous branch are the following:
+
+Skip='linear' everywhere
+n_critic = 1
+codim = 1 (120 previously)
+
