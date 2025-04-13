@@ -14,7 +14,7 @@ import gc
 train_mean = torch.from_numpy(np.load('data/data_more_processing/train_mean.npy')).to('cuda:0')
 train_std = torch.from_numpy(np.load('data/data_more_processing/train_std.npy')).to('cuda:0')
 
-writer = SummaryWriter("/home/arunreddy/ML/Cloud-Storage/logs_demo/codim-reduce")
+writer = SummaryWriter("/home/arunreddy/ML/Cloud-Storage/logs_demo/experiment-2")
 
 def calculate_gradient_penalty(model, real_images,c, fake_images,cf, device, res):
     """Calculates the gradient penalty loss for WGAN GRF"""
@@ -375,108 +375,109 @@ def train_GANO_HM_two_stage_copy_copy_copy_copy(D_move, D_orient, D_betas, D_han
         loss_V_MSE_full = 0.0
 
         for j, data in tqdm(enumerate(train_dataloader)):
+            # Training disc to be ahead of gen
+            for _ in range(n_critic):
 
-            if random.random()<0.5:
-                x = data[0].to(device).float()
-                c = data[1].to(device).float()
+                if random.random()<0.5:
+                    x = data[0].to(device).float()
+                    c = data[1].to(device).float()
 
-                x_move, x_orient, x_betas, x_hands, x_legs, x_torso = seperate_data(x)
-                c_move, c_orient, c_betas, c_hands, c_legs, c_torso = seperate_data(c)
+                    x_move, x_orient, x_betas, x_hands, x_legs, x_torso = seperate_data(x)
+                    c_move, c_orient, c_betas, c_hands, c_legs, c_torso = seperate_data(c)
 
-            else:
-                x = data[1].to(device).float()
-                c = data[0].to(device).float()
+                else:
+                    x = data[1].to(device).float()
+                    c = data[0].to(device).float()
 
-                x_move, x_orient, x_betas, x_hands, x_legs, x_torso = seperate_data(x)
-                c_move, c_orient, c_betas, c_hands, c_legs, c_torso = seperate_data(c)
-            
-            #-------- Training D_move --------#
+                    x_move, x_orient, x_betas, x_hands, x_legs, x_torso = seperate_data(x)
+                    c_move, c_orient, c_betas, c_hands, c_legs, c_torso = seperate_data(c)
+                
+                #-------- Training D_move --------#
 
-            x_move = x_move.reshape(x_move.shape[0], x_move.shape[1], -1)
-            c_move = c_move.reshape(c_move.shape[0], c_move.shape[1], -1)
+                x_move = x_move.reshape(x_move.shape[0], x_move.shape[1], -1)
+                c_move = c_move.reshape(c_move.shape[0], c_move.shape[1], -1)
 
-            x_syn_move, loss_D, loss_W = train_discriminator(x_move, c_move, D_move, G_move, D_move_optimizer, D_move_scheduler, λ_grad, grf, device)
-            loss_D_move += loss_D
-            loss_W_move += loss_W
+                x_syn_move, loss_D, loss_W = train_discriminator(x_move, c_move, D_move, G_move, D_move_optimizer, D_move_scheduler, λ_grad, grf, device)
+                loss_D_move += loss_D
+                loss_W_move += loss_W
 
-            #-------- Training D_orient --------#
+                #-------- Training D_orient --------#
 
-            x_orient = x_orient.reshape(x_orient.shape[0], x_orient.shape[1], -1)
-            c_orient = c_orient.reshape(c_orient.shape[0], c_orient.shape[1], -1)
+                x_orient = x_orient.reshape(x_orient.shape[0], x_orient.shape[1], -1)
+                c_orient = c_orient.reshape(c_orient.shape[0], c_orient.shape[1], -1)
 
-            x_syn_orient, loss_D, loss_W = train_discriminator(x_orient, c_orient, D_orient, G_orient, D_orient_optimizer, D_orient_scheduler, λ_grad, grf, device)
-            loss_D_orient += loss_D
-            loss_W_orient += loss_W
+                x_syn_orient, loss_D, loss_W = train_discriminator(x_orient, c_orient, D_orient, G_orient, D_orient_optimizer, D_orient_scheduler, λ_grad, grf, device)
+                loss_D_orient += loss_D
+                loss_W_orient += loss_W
 
-            #-------- Training D_betas --------#
+                #-------- Training D_betas --------#
 
-            x_betas = x_betas.reshape(x_betas.shape[0], x_betas.shape[1], -1)
-            c_betas = c_betas.reshape(c_betas.shape[0], c_betas.shape[1], -1)
+                x_betas = x_betas.reshape(x_betas.shape[0], x_betas.shape[1], -1)
+                c_betas = c_betas.reshape(c_betas.shape[0], c_betas.shape[1], -1)
 
-            x_syn_betas, loss_D, loss_W = train_discriminator(x_betas, c_betas, D_betas, G_betas, D_betas_optimizer, D_betas_scheduler, λ_grad, grf, device)
-            loss_D_betas += loss_D
-            loss_W_betas += loss_W
+                x_syn_betas, loss_D, loss_W = train_discriminator(x_betas, c_betas, D_betas, G_betas, D_betas_optimizer, D_betas_scheduler, λ_grad, grf, device)
+                loss_D_betas += loss_D
+                loss_W_betas += loss_W
 
-            #-------- Training D_hands --------#
+                #-------- Training D_hands --------#
 
-            x_hands = x_hands.reshape(x_hands.shape[0], x_hands.shape[1], -1)
-            c_hands = c_hands.reshape(c_hands.shape[0], c_hands.shape[1], -1)
+                x_hands = x_hands.reshape(x_hands.shape[0], x_hands.shape[1], -1)
+                c_hands = c_hands.reshape(c_hands.shape[0], c_hands.shape[1], -1)
 
-            x_syn_hands, loss_D, loss_W = train_discriminator(x_hands, c_hands, D_hands, G_hands, D_hands_optimizer, D_hands_scheduler, λ_grad, grf, device)
-            loss_D_hands += loss_D
-            loss_W_hands += loss_W
+                x_syn_hands, loss_D, loss_W = train_discriminator(x_hands, c_hands, D_hands, G_hands, D_hands_optimizer, D_hands_scheduler, λ_grad, grf, device)
+                loss_D_hands += loss_D
+                loss_W_hands += loss_W
 
-            #-------- Training D_legs --------#
+                #-------- Training D_legs --------#
 
-            x_legs = x_legs.reshape(x_legs.shape[0], x_legs.shape[1], -1)
-            c_legs = c_legs.reshape(c_legs.shape[0], c_legs.shape[1], -1)
+                x_legs = x_legs.reshape(x_legs.shape[0], x_legs.shape[1], -1)
+                c_legs = c_legs.reshape(c_legs.shape[0], c_legs.shape[1], -1)
 
-            x_syn_legs, loss_D, loss_W = train_discriminator(x_legs, c_legs, D_legs, G_legs, D_legs_optimizer, D_legs_scheduler, λ_grad, grf, device)
-            loss_D_legs += loss_D
-            loss_W_legs += loss_W
+                x_syn_legs, loss_D, loss_W = train_discriminator(x_legs, c_legs, D_legs, G_legs, D_legs_optimizer, D_legs_scheduler, λ_grad, grf, device)
+                loss_D_legs += loss_D
+                loss_W_legs += loss_W
 
-            #-------- Training D_torso --------#
+                #-------- Training D_torso --------#
 
-            x_torso = x_torso.reshape(x_torso.shape[0], x_torso.shape[1], -1)
-            c_torso = c_torso.reshape(c_torso.shape[0], c_torso.shape[1], -1)
+                x_torso = x_torso.reshape(x_torso.shape[0], x_torso.shape[1], -1)
+                c_torso = c_torso.reshape(c_torso.shape[0], c_torso.shape[1], -1)
 
-            x_syn_torso, loss_D, loss_W = train_discriminator(x_torso, c_torso, D_torso, G_torso, D_torso_optimizer, D_torso_scheduler, λ_grad, grf, device)
-            loss_D_torso += loss_D
-            loss_W_torso += loss_W
+                x_syn_torso, loss_D, loss_W = train_discriminator(x_torso, c_torso, D_torso, G_torso, D_torso_optimizer, D_torso_scheduler, λ_grad, grf, device)
+                loss_D_torso += loss_D
+                loss_W_torso += loss_W
 
-            x_syn_full = combine_data(x_syn_move, x_syn_orient, x_syn_betas, x_syn_hands, x_syn_legs, x_syn_torso)
+                x_syn_full = combine_data(x_syn_move, x_syn_orient, x_syn_betas, x_syn_hands, x_syn_legs, x_syn_torso)
             
             
             #-------- Train Generators --------#
-            if (j + 1) % n_critic == 0:
 
-                x_syn_full, loss_G_move_, loss_G_orient_, loss_G_betas_, loss_G_hands_, loss_G_legs_, loss_G_torso_ = train_all_generators(x_move, c_move, D_move, G_move, G_move_optimizer, G_move_scheduler,
-                                                                 x_orient, c_orient, D_orient, G_orient, G_orient_optimizer, G_orient_scheduler,
-                                                                 x_betas, c_betas, D_betas, G_betas, G_betas_optimizer, G_betas_scheduler,
-                                                                 x_hands, c_hands, D_hands, G_hands, G_hands_optimizer, G_hands_scheduler,
-                                                                 x_legs, c_legs, D_legs, G_legs, G_legs_optimizer, G_legs_scheduler,
-                                                                 x_torso, c_torso, D_torso, G_torso, G_torso_optimizer, G_torso_scheduler,
-                                                                 gt_weight, grf, n_critic, hm_weight, fc_weight)
+            x_syn_full, loss_G_move_, loss_G_orient_, loss_G_betas_, loss_G_hands_, loss_G_legs_, loss_G_torso_ = train_all_generators(x_move, c_move, D_move, G_move, G_move_optimizer, G_move_scheduler,
+                                                                x_orient, c_orient, D_orient, G_orient, G_orient_optimizer, G_orient_scheduler,
+                                                                x_betas, c_betas, D_betas, G_betas, G_betas_optimizer, G_betas_scheduler,
+                                                                x_hands, c_hands, D_hands, G_hands, G_hands_optimizer, G_hands_scheduler,
+                                                                x_legs, c_legs, D_legs, G_legs, G_legs_optimizer, G_legs_scheduler,
+                                                                x_torso, c_torso, D_torso, G_torso, G_torso_optimizer, G_torso_scheduler,
+                                                                gt_weight, grf, n_critic, hm_weight, fc_weight)
 
-                #-------- Training G_move --------#
-                loss_G_move += loss_G_move_
+            #-------- Training G_move --------#
+            loss_G_move += loss_G_move_
 
-                #-------- Training G_orient --------#
-                loss_G_orient += loss_G_orient_
+            #-------- Training G_orient --------#
+            loss_G_orient += loss_G_orient_
 
-                #-------- Training G_betas --------#
-                loss_G_betas += loss_G_betas_
+            #-------- Training G_betas --------#
+            loss_G_betas += loss_G_betas_
 
-                #-------- Training G_hands --------#
-                loss_G_hands += loss_G_hands_
+            #-------- Training G_hands --------#
+            loss_G_hands += loss_G_hands_
 
-                #-------- Training G_legs --------#
-                loss_G_legs += loss_G_legs_
+            #-------- Training G_legs --------#
+            loss_G_legs += loss_G_legs_
 
-                #-------- Training G_torso --------#
-                loss_G_torso += loss_G_torso_
+            #-------- Training G_torso --------#
+            loss_G_torso += loss_G_torso_
 
-                #-------- Training G_full --------#
+            #-------- Training G_full --------#
 
 
             loss_MSE_move += F.mse_loss(x_syn_move, x_move)
@@ -541,39 +542,39 @@ def train_GANO_HM_two_stage_copy_copy_copy_copy(D_move, D_orient, D_betas, D_han
                 gc.collect()
                 torch.cuda.empty_cache()
         
-        losses_G_move[i] = loss_G_move / (no_of_batches/n_critic)
-        losses_W_move[i] = loss_W_move / no_of_batches
-        losses_D_move[i] = loss_D_move / no_of_batches
+        losses_G_move[i] = loss_G_move / (no_of_batches)
+        losses_W_move[i] = loss_W_move / (no_of_batches*n_critic)
+        losses_D_move[i] = loss_D_move / (no_of_batches*n_critic)
         losses_MSE_move[i] = loss_MSE_move/ no_of_batches
         losses_V_MSE_move[i] =  loss_V_MSE_move/ no_of_val_batches
 
-        losses_G_orient[i] = loss_G_orient / (no_of_batches/n_critic)
-        losses_W_orient[i] = loss_W_orient / no_of_batches
-        losses_D_orient[i] = loss_D_orient / no_of_batches
+        losses_G_orient[i] = loss_G_orient / (no_of_batches)
+        losses_W_orient[i] = loss_W_orient / (no_of_batches*n_critic)
+        losses_D_orient[i] = loss_D_orient / (no_of_batches*n_critic)
         losses_MSE_orient[i] = loss_MSE_orient/ no_of_batches
         losses_V_MSE_orient[i] =  loss_V_MSE_orient/ no_of_val_batches
 
-        losses_G_betas[i] = loss_G_betas / (no_of_batches/n_critic)
-        losses_W_betas[i] = loss_W_betas / no_of_batches
-        losses_D_betas[i] = loss_D_betas / no_of_batches
+        losses_G_betas[i] = loss_G_betas / (no_of_batches)
+        losses_W_betas[i] = loss_W_betas / (no_of_batches*n_critic)
+        losses_D_betas[i] = loss_D_betas / (no_of_batches*n_critic)
         losses_MSE_betas[i] = loss_MSE_betas/ no_of_batches
         losses_V_MSE_betas[i] =  loss_V_MSE_betas/ no_of_val_batches
 
-        losses_G_hands[i] = loss_G_hands / (no_of_batches/n_critic)
-        losses_W_hands[i] = loss_W_hands / no_of_batches
-        losses_D_hands[i] = loss_D_hands / no_of_batches
+        losses_G_hands[i] = loss_G_hands / (no_of_batches)
+        losses_W_hands[i] = loss_W_hands / (no_of_batches*n_critic)
+        losses_D_hands[i] = loss_D_hands / (no_of_batches*n_critic)
         losses_MSE_hands[i] = loss_MSE_hands/ no_of_batches
         losses_V_MSE_hands[i] =  loss_V_MSE_hands/ no_of_val_batches
 
-        losses_G_legs[i] = loss_G_legs / (no_of_batches/n_critic)
-        losses_W_legs[i] = loss_W_legs / no_of_batches
-        losses_D_legs[i] = loss_D_legs / no_of_batches
+        losses_G_legs[i] = loss_G_legs / (no_of_batches)
+        losses_W_legs[i] = loss_W_legs / (no_of_batches*n_critic)
+        losses_D_legs[i] = loss_D_legs / (no_of_batches*n_critic)
         losses_MSE_legs[i] = loss_MSE_legs/ no_of_batches
         losses_V_MSE_legs[i] =  loss_V_MSE_legs/ no_of_val_batches
 
-        losses_G_torso[i] = loss_G_torso / (no_of_batches/n_critic)
-        losses_W_torso[i] = loss_W_torso / no_of_batches
-        losses_D_torso[i] = loss_D_torso / no_of_batches
+        losses_G_torso[i] = loss_G_torso / (no_of_batches)
+        losses_W_torso[i] = loss_W_torso / (no_of_batches*n_critic)
+        losses_D_torso[i] = loss_D_torso / (no_of_batches*n_critic)
         losses_MSE_torso[i] = loss_MSE_torso/ no_of_batches
         losses_V_MSE_torso[i] =  loss_V_MSE_torso/ no_of_val_batches
 

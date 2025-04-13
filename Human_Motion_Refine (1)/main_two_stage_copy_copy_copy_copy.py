@@ -58,6 +58,7 @@ if __name__ == "__main__":
 
     train_dataloader = DataLoader(train_dataset, batch_size=config['batch_size'], shuffle=True)
 
+
     len_val_data = int(config['val_data_percent']*len(test_data))
     val_data = random.sample(test_data, len_val_data)
 
@@ -102,41 +103,41 @@ if __name__ == "__main__":
     num_epochs = config['epochs']
 
 
-    G_move_optimizer = torch.optim.Adam(G_move.parameters(), lr=config['lr'])
-    G_move_scheduler = CosineAnnealingLR(G_move_optimizer, T_max=num_epochs)
+    G_move_optimizer = torch.optim.Adam(G_move.parameters(), lr=config['gen-lr'])
+    G_move_scheduler = CosineAnnealingLR(G_move_optimizer, T_max=num_epochs, eta_min=1e-6)
 
-    G_orient_optimizer = torch.optim.Adam(G_orient.parameters(), lr=config['lr'])
-    G_orient_scheduler = CosineAnnealingLR(G_orient_optimizer, T_max=num_epochs)
+    G_orient_optimizer = torch.optim.Adam(G_orient.parameters(), lr=config['gen-lr'])
+    G_orient_scheduler = CosineAnnealingLR(G_orient_optimizer, T_max=num_epochs, eta_min=1e-6)
 
-    G_betas_optimizer = torch.optim.Adam(G_betas.parameters(), lr=config['lr'])
-    G_betas_scheduler = CosineAnnealingLR(G_betas_optimizer, T_max=num_epochs)
+    G_betas_optimizer = torch.optim.Adam(G_betas.parameters(), lr=config['gen-lr'])
+    G_betas_scheduler = CosineAnnealingLR(G_betas_optimizer, T_max=num_epochs, eta_min=1e-6)
 
-    G_hands_optimizer = torch.optim.Adam(G_hands.parameters(), lr=config['lr'])
-    G_hands_scheduler = CosineAnnealingLR(G_hands_optimizer, T_max=num_epochs)
+    G_hands_optimizer = torch.optim.Adam(G_hands.parameters(), lr=config['gen-lr'])
+    G_hands_scheduler = CosineAnnealingLR(G_hands_optimizer, T_max=num_epochs, eta_min=1e-6)
 
-    G_legs_optimizer = torch.optim.Adam(G_legs.parameters(), lr=config['lr'])
-    G_legs_scheduler = CosineAnnealingLR(G_legs_optimizer, T_max=num_epochs)
+    G_legs_optimizer = torch.optim.Adam(G_legs.parameters(), lr=config['gen-lr'])
+    G_legs_scheduler = CosineAnnealingLR(G_legs_optimizer, T_max=num_epochs, eta_min=1e-6)
 
-    G_torso_optimizer = torch.optim.Adam(G_torso.parameters(), lr=config['lr'])
-    G_torso_scheduler = CosineAnnealingLR(G_torso_optimizer, T_max=num_epochs)
+    G_torso_optimizer = torch.optim.Adam(G_torso.parameters(), lr=config['gen-lr'])
+    G_torso_scheduler = CosineAnnealingLR(G_torso_optimizer, T_max=num_epochs, eta_min=1e-6)
 
-    D_move_optimizer = torch.optim.Adam(D_move.parameters(), lr=config['lr'])
-    D_move_scheduler = CosineAnnealingLR(D_move_optimizer, T_max=num_epochs)
+    D_move_optimizer = torch.optim.Adam(D_move.parameters(), lr=config['disc-lr'])
+    D_move_scheduler = CosineAnnealingLR(D_move_optimizer, T_max=num_epochs, eta_min=1e-6)
 
-    D_orient_optimizer = torch.optim.Adam(D_orient.parameters(), lr=config['lr'])
-    D_orient_scheduler = CosineAnnealingLR(D_orient_optimizer, T_max=num_epochs)
+    D_orient_optimizer = torch.optim.Adam(D_orient.parameters(), lr=config['disc-lr'])
+    D_orient_scheduler = CosineAnnealingLR(D_orient_optimizer, T_max=num_epochs, eta_min=1e-6)
 
-    D_betas_optimizer = torch.optim.Adam(D_betas.parameters(), lr=config['lr'])
-    D_betas_scheduler = CosineAnnealingLR(D_betas_optimizer, T_max=num_epochs)
+    D_betas_optimizer = torch.optim.Adam(D_betas.parameters(), lr=config['disc-lr'])
+    D_betas_scheduler = CosineAnnealingLR(D_betas_optimizer, T_max=num_epochs, eta_min=1e-6)
 
-    D_hands_optimizer = torch.optim.Adam(D_hands.parameters(), lr=config['lr'])
-    D_hands_scheduler = CosineAnnealingLR(D_hands_optimizer, T_max=num_epochs)
+    D_hands_optimizer = torch.optim.Adam(D_hands.parameters(), lr=config['disc-lr'])
+    D_hands_scheduler = CosineAnnealingLR(D_hands_optimizer, T_max=num_epochs, eta_min=1e-6)
 
-    D_legs_optimizer = torch.optim.Adam(D_legs.parameters(), lr=config['lr'])
-    D_legs_scheduler = CosineAnnealingLR(D_legs_optimizer, T_max=num_epochs)
+    D_legs_optimizer = torch.optim.Adam(D_legs.parameters(), lr=config['disc-lr'])
+    D_legs_scheduler = CosineAnnealingLR(D_legs_optimizer, T_max=num_epochs, eta_min=1e-6)
 
-    D_torso_optimizer = torch.optim.Adam(D_torso.parameters(), lr=config['lr'])
-    D_torso_scheduler = CosineAnnealingLR(D_torso_optimizer, T_max=num_epochs)
+    D_torso_optimizer = torch.optim.Adam(D_torso.parameters(), lr=config['disc-lr'])
+    D_torso_scheduler = CosineAnnealingLR(D_torso_optimizer, T_max=num_epochs, eta_min=1e-6)
 
     if bool(config['resume']):
         print('Resuming training')

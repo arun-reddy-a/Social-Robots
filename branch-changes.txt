@@ -4,3 +4,10 @@ Skip='linear' everywhere
 n_critic = 1
 codim = 1 (120 previously)
 
+The changes made in this branch when compared to previous branch are the follwing:
+
+Proper Skip Connections
+Used n_critic properly
+Using different lr for gen and disc
+Changed experiment storage results folder
+Changed experiment name
