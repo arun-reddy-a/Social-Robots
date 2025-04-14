@@ -14,7 +14,7 @@ import gc
 train_mean = torch.from_numpy(np.load('data/data_more_processing/train_mean.npy')).to('cuda:0')
 train_std = torch.from_numpy(np.load('data/data_more_processing/train_std.npy')).to('cuda:0')
 
-writer = SummaryWriter("/home/arunreddy/ML/Cloud-Storage/logs_demo/experiment-2")
+writer = SummaryWriter("/home/arunreddy/ML/Cloud-Storage/logs_demo/experiment-3")
 
 def calculate_gradient_penalty(model, real_images,c, fake_images,cf, device, res):
     """Calculates the gradient penalty loss for WGAN GRF"""
