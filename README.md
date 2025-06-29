@@ -2,6 +2,10 @@
 
 Please ensure the following guidelines are followed throughout the course of this project:
 
+## Demo
+
+The red colored human is the input to the motion prediction model, the blue colored human is the generated output.
+
 ## 🔄 Code Management
 
 - **The true source of code is this repository** — always make sure it is kept up to date.
