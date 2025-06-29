@@ -6,8 +6,22 @@ Please ensure the following guidelines are followed throughout the course of thi
 
 The red-colored human is the input to the motion prediction model, and the blue-colored human is the generated output.
 
-- 🔹 **Ground Truth**: [![Ground Truth](https://drive.google.com/uc?id=1Z2l2_zCwFvXxFsr3f6JcJ_N0hViWOjgL)](https://drive.google.com/file/d/1Z2l2_zCwFvXxFsr3f6JcJ_N0hViWOjgL/view)
-- 🔹 **Predicted**: [![Predicted](https://drive.google.com/uc?id=1xR0riCAV4j2YPRvEj4kZpQOPXL-PpwfV)](https://drive.google.com/file/d/1xR0riCAV4j2YPRvEj4kZpQOPXL-PpwfV/view?usp=sharing)
+<table>
+  <tr>
+    <td align="center">
+      <strong>🔹 Ground Truth</strong><br>
+      <a href="https://drive.google.com/file/d/1Z2l2_zCwFvXxFsr3f6JcJ_N0hViWOjgL/view">
+        <img src="https://drive.google.com/uc?id=1Z2l2_zCwFvXxFsr3f6JcJ_N0hViWOjgL" width="400"/>
+      </a>
+    </td>
+    <td align="center">
+      <strong>🔹 Predicted</strong><br>
+      <a href="https://drive.google.com/file/d/1xR0riCAV4j2YPRvEj4kZpQOPXL-PpwfV/view?usp=sharing">
+        <img src="https://drive.google.com/uc?id=1xR0riCAV4j2YPRvEj4kZpQOPXL-PpwfV" width="400"/>
+      </a>
+    </td>
+  </tr>
+</table>
 
 ---
 
