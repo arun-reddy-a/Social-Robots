@@ -53,3 +53,7 @@ The red-colored human is the input to the motion prediction model, and the blue-
 ---
 
 Please reach out to the project maintainer if you have any questions or need access to the buckets.
+
+## 📂 Neural Operator
+
+![Explain](fno.png)
